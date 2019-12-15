@@ -6,10 +6,14 @@ import com.gl.idp.users.model.CustomUserDetails;
 import com.gl.idp.users.model.User;
 import com.gl.idp.users.repository.RoleRepository;
 import com.gl.idp.users.repository.UserRepository;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 @Service
@@ -62,6 +66,23 @@ public class UpUserService {
 
     public User getByUserEmailAndPassword(String email, String password){
         return userRepository.findByEmailAndPassword(email, password);
+    }
+
+    public int getUserIdFromToken(String authToken){
+        String email = Jwts.parser()
+                .setSigningKey("JwtSecretKey".getBytes())
+                .parseClaimsJws(authToken)
+                .getBody().getSubject();
+        return userRepository.findByEmail(email).get().getId();
+    }
+
+    public boolean isAdminFromToken(String authToken){
+        Claims claims = Jwts.parser()
+                .setSigningKey("JwtSecretKey".getBytes())
+                .parseClaimsJws(authToken)
+                .getBody();
+        List<String> authorities = (List<String>) claims.get("authorities");
+        return authorities.stream().findFirst().get().equals("ROLE_ADMIN");
     }
 
 

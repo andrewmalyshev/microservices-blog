@@ -13,5 +13,6 @@
         <module>discovery-service</module>
         <module>users-service</module>
         <module>gateway-service</module>
+        <module>blogs-service</module>
     </modules>
 </project>

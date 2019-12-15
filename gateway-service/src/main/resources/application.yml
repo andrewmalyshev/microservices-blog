@@ -1,5 +1,5 @@
 server:
-  port: 8762
+  port: 8090
 
 eureka:
   client:
@@ -14,11 +14,6 @@ logging:
 zuul:
   ignoredServices: '*'
   routes:
-
-    # Map paths to services
-#    blogs-service:
-#      path: /blogs/**
-
     # Map path to auth service
     auth-service:
       path: /authenticate/**
@@ -31,3 +26,15 @@ zuul:
       serviceId: AUTH-USERS-SERVICE
       stripPrefix: false
       sensitiveHeaders: Cookie,Set-Cookie
+    blogs-service:
+      path: /blog/**
+      stripPrefix: false
+      sensitiveHeaders:
+    comments-service:
+      path: /comment/**
+      stripPrefix: false
+      sensitiveHeaders:
+    likes-service:
+      path: /likesunlikes/**
+      stripPrefix: false
+      sensitiveHeaders:

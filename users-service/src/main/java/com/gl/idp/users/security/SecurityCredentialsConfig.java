@@ -37,6 +37,7 @@ public class SecurityCredentialsConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+        .headers().frameOptions().disable().and()
                 .csrf().disable()
                 // make sure we use stateless session; session won't be used to store user's state.
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -53,7 +54,9 @@ public class SecurityCredentialsConfig extends WebSecurityConfigurerAdapter {
                 .addFilterAfter(new JwtTokenAuthenticationFilter(jwtConfig), JwtUsernameAndPasswordAuthenticationFilter.class)
                 .authorizeRequests()
                 // allow all POST requests
+                .antMatchers("/h2/**").permitAll()
                 .antMatchers(HttpMethod.POST, jwtConfig.getUri(), "/users/add", "/users/is-unique-email").permitAll()
+                .antMatchers(HttpMethod.GET, "/users/is-admin/**", "/users/id/**").permitAll()
                 .antMatchers("/users/admin/add", "/users/list", "/users/change-approval").hasRole("ADMIN")
                 // any other requests must be authenticated
                 .anyRequest().authenticated();

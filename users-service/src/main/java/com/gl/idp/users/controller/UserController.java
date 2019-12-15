@@ -19,6 +19,16 @@ public class UserController {
         return upUserService.getAllUsers();
     }
 
+    @GetMapping("/id/{token}")
+    public int getId(@PathVariable("token")String authToken){
+        return upUserService.getUserIdFromToken(authToken);
+    }
+
+    @GetMapping("/is-admin/{token}")
+    public boolean isAdmin(@PathVariable("token")String authToken){
+        return upUserService.isAdminFromToken(authToken);
+    }
+
     @PostMapping(value = "/is_unique_email")
     public Object UniqueEmailChecker(@RequestBody UserDTO userDTO){
         return upUserService.isUniqueEmail(userDTO.getEmail());
