@@ -9,5 +9,5 @@ public class BlogDTO {
     private int id;
     private String description;
     private int userId;
-    private boolean isApproved = false;
+    private boolean isApproved;
 }

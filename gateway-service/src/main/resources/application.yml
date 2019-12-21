@@ -29,13 +29,16 @@ zuul:
       sensitiveHeaders: Cookie,Set-Cookie
     blogs-service:
       path: /blog/**
+      serviceId: BLOGS-SERVICE
       stripPrefix: false
       sensitiveHeaders:
     comments-service:
       path: /comment/**
+      serviceId: BLOGS-SERVICE
       stripPrefix: false
       sensitiveHeaders:
     likes-service:
       path: /likesunlikes/**
+      serviceId: BLOGS-SERVICE
       stripPrefix: false
       sensitiveHeaders:

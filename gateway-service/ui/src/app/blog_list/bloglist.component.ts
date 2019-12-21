@@ -41,11 +41,11 @@ export class BlogListComponent {
         var idAttr = target.attributes.id;
         var value = idAttr.nodeValue;
         var blogId = value.split("-")[1];
-        var isApproved = false;
+        var approved = false;
         if(value.split("-")[2] == "a"){
-            isApproved = true
+            approved = true
         }
-        this.blogService.changeApproval(blogId, isApproved).subscribe(data=>{
+        this.blogService.changeApproval(blogId, approved).subscribe(data=>{
             this.blogs = this.blogService.blogListWithLikeUnlikeCount(data);;
         });
     }

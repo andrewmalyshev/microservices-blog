@@ -14,6 +14,6 @@ public class CommentController {
 
     @PostMapping("/add")
     public Object save(@RequestHeader("Authorization") String authToken, @RequestBody CommentDTO commentDTO){
-        return commentService.save(commentDTO, authToken);
+        return commentService.save(commentDTO, authToken.substring(7));
     }
 }

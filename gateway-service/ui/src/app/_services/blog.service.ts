@@ -27,10 +27,10 @@ export class BlogService {
         console.log(comment);
         return this.http.post<any>(`${config.apiUrl}/comment/add`, comment);
     }
-    changeApproval(blogId, isApproved){
+    changeApproval(blogId, approved){
         var approval = {
             id: blogId,
-            isApproved: isApproved
+            approved: approved
         }
         console.log(approval);
         return this.http.post<any>(`${config.apiUrl}/blog/change-approval`, approval);
