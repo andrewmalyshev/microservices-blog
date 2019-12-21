@@ -1,0 +1,30 @@
+﻿
+<div>
+    <div class="card m-4" *ngFor="let blog of blogs; index as i">
+        <div class="card-header">
+            Posted by {{blog.username}}
+            <button class="btn btn-danger float-right" id="blogapproval-{{blog.id}}-d" *ngIf="isAdmin && blog.isApproved" (click)="changeApproval($event, item)" >Deactivate</button>
+            <button class="btn btn-success float-right" id="blogapproval-{{blog.id}}-a" *ngIf="isAdmin && ! blog.isApproved" (click)="changeApproval($event, item)" >Activate</button>
+            <button class="btn btn-danger float-right" style="margin-right: 5px " id="blogdelete-{{blog.id}}" *ngIf="isAdmin || (currentUserId == blog.userId)" (click)="deleteBlog($event, item)" >Delete</button>
+        </div>
+        <div class="card-body">{{blog.description}}</div>
+        <div class="card-footer p-1" *ngIf=" ! isAdmin">
+               <button class="btn btn-primary" id="l_{{blog.id}}" (click)="giveLikeorUnlike($event, item)" >Like {{blog.likeCount}}</button>
+               <button class="btn btn-secondary m-2" id="ul_{{blog.id}}" (click)="giveLikeorUnlike($event, item)" >Unlike {{blog.unlikeCount}}</button>
+               <button class="btn btn-info">Comments {{blog.commentsById.length}}</button>
+        </div>
+        <div class="card" *ngFor="let comment of blog.commentsById; index as j">
+            <h6 class="p-1">{{comment.username}}</h6>
+            <div style="padding:0 0 10px 20px ">{{comment.description}}</div>
+        </div>
+        <div class="card" *ngIf=" ! isAdmin">
+            <div class="card-body">
+                <textarea id="comment_{{blog.id}}" class="form-control comment"></textarea>
+                <div style="text-align: center">
+                    <button style="margin-top: 20px" class="btn btn-success" id="commentbtn-{{blog.id}}" (click)="comment($event, item)" >Comment</button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>

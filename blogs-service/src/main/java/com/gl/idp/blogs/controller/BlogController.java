@@ -22,7 +22,7 @@ public class BlogController {
     }
     @GetMapping(value = "/list_all")
     public Object list(@RequestHeader("Authorization") String authToken){
-        return blogService.blogList(authToken);
+        return blogService.blogList(authToken.substring(7));
     }
 
     @PostMapping(value = "/change-approval")
@@ -36,7 +36,7 @@ public class BlogController {
 
     @PostMapping(value = "/delete")
     public Object delete(@RequestHeader("Authorization") String authToken, @RequestBody BlogDTO blogDTO){
-        return blogService.deleteBlog(blogDTO, authToken);
+        return blogService.deleteBlog(blogDTO, authToken.substring(7));
     }
 
 

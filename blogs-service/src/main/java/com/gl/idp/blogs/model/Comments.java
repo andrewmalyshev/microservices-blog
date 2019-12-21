@@ -27,10 +27,9 @@ public class Comments {
     @Column(name = "blog_id", insertable = false, updatable = false)
     private int blogId;
 
-//    @ManyToOne
-//    @JsonManagedReference
-//    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
-//    private User userByUserId;
+    @Basic
+    @Column(name = "username")
+    private String username;
 
     @ManyToOne
     @JsonBackReference

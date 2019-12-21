@@ -3,6 +3,7 @@ package com.gl.idp.users.security;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gl.idp.users.common.JwtConfig;
 import com.gl.idp.users.dto.UserDTO;
+import com.gl.idp.users.model.User;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -66,6 +67,7 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
                                             Authentication auth) throws IOException, ServletException {
 		
 		long now = System.currentTimeMillis();
+		User user = (User) auth.getPrincipal();
 		String token = Jwts.builder()
 			.setSubject(auth.getName())	
 			// Convert to list of strings. 
@@ -76,8 +78,27 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
 			.setExpiration(new Date(now + jwtConfig.getExpiration() * 1000))  // in milliseconds
 			.signWith(SignatureAlgorithm.HS512, jwtConfig.getSecret().getBytes())
 			.compact();
+		user.setToken(token);
 		
 		// Add token to header
 		response.addHeader(jwtConfig.getHeader(), jwtConfig.getPrefix() + token);
+		response.getWriter().write(getResponse(user));
+		response.getWriter().close();
+	}
+
+	public String getResponse(User user){
+		String role = "User";
+		if(user.getRoleId() == 1){
+			role = "Admin";
+		}
+		return "{" +
+				"\"id\": " + user.getId() + "," +
+				"\"firstName\": \"" + user.getFirstName() + "\"," +
+				"\"lastName\": \"" + user.getLastName() + "\"," +
+				"\"username\": \"" + user.getEmail() + "\"," +
+				"\"role\": \"" + role + "\"," +
+				"\"password\": \" \"," +
+				"\"token\": \"" + user.getToken() + "\"" +
+				"}";
 	}
 }

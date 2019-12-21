@@ -1,8 +1,9 @@
 package com.gl.idp.users.security;
 
 import com.gl.idp.users.common.JwtConfig;
+import com.gl.idp.users.repository.UserRepository;
 import com.gl.idp.users.service.EncryptionService;
-import lombok.RequiredArgsConstructor;
+import com.gl.idp.users.service.UpUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
@@ -12,15 +13,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import javax.servlet.http.HttpServletResponse;
-import java.util.Arrays;
-import java.util.Collections;
 
 @EnableWebSecurity
 public class SecurityCredentialsConfig extends WebSecurityConfigurerAdapter {
@@ -55,8 +50,8 @@ public class SecurityCredentialsConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 // allow all POST requests
                 .antMatchers("/h2/**").permitAll()
-                .antMatchers(HttpMethod.POST, jwtConfig.getUri(), "/users/add", "/users/is-unique-email").permitAll()
-                .antMatchers(HttpMethod.GET, "/users/is-admin/**", "/users/id/**").permitAll()
+                .antMatchers(HttpMethod.POST, jwtConfig.getUri(), "/users/add", "/users/is_unique_email").permitAll()
+                .antMatchers(HttpMethod.GET, "/users/is-admin/**", "/users/id/**", "/users/get-name/**").permitAll()
                 .antMatchers("/users/admin/add", "/users/list", "/users/change-approval").hasRole("ADMIN")
                 // any other requests must be authenticated
                 .anyRequest().authenticated();

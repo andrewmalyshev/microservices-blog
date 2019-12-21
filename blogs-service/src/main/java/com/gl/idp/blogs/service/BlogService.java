@@ -21,6 +21,7 @@ public class BlogService {
         Blogs blog = new Blogs();
         int id = usersServiceClient.getUserIdFromToken(authToken);
         blog.setUserId(id);
+        blog.setUsername(usersServiceClient.getUserName(id));
         blog.setDescription(blogDTO.getDescription());
         blog.setApproved(false);
         return blogRepository.save(blog);

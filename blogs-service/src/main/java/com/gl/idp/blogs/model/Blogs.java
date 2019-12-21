@@ -24,10 +24,9 @@ public class Blogs {
     @Column(name = "user_id")
     private int userId;
 
-//    @ManyToOne
-//    @JsonManagedReference
-//    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
-//    private User userByUserId;
+    @Basic
+    @Column(name = "username")
+    private String username;
 
     @OneToMany(mappedBy = "blogByBlogId", cascade = CascadeType.ALL)
     @JsonManagedReference

@@ -68,6 +68,11 @@ public class UpUserService {
         return userRepository.findByEmailAndPassword(email, password);
     }
 
+    public String getFullUserName(Integer userId){
+        User user = userRepository.findById(userId);
+        return user.getFirstName() + " " + user.getLastName();
+    }
+
     public int getUserIdFromToken(String authToken){
         String email = Jwts.parser()
                 .setSigningKey("JwtSecretKey".getBytes())

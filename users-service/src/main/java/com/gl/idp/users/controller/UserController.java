@@ -1,6 +1,8 @@
 package com.gl.idp.users.controller;
 
 import com.gl.idp.users.dto.UserDTO;
+import com.gl.idp.users.model.User;
+import com.gl.idp.users.repository.UserRepository;
 import com.gl.idp.users.service.UpUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +19,11 @@ public class UserController {
     @GetMapping("/list")
     public Object userList(HttpServletRequest request){
         return upUserService.getAllUsers();
+    }
+
+    @GetMapping("/get-name/{id}")
+    public Object getUserName(@PathVariable("id")Integer id){
+        return upUserService.getFullUserName(id);
     }
 
     @GetMapping("/id/{token}")

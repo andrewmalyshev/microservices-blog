@@ -26,7 +26,7 @@ public class CommentService {
             comments.setDescription(commentDTO.getDescription());
             comments.setUserId(userId);
             comments.setBlogByBlogId(blog);
-//            comments.setUserByUserId(user);
+            comments.setUsername(usersServiceClient.getUserName(userId));
             commentRepository.save(comments);
         }
         return blogService.blogList(authToken);

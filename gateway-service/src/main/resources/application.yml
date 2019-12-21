@@ -9,9 +9,10 @@ eureka:
 logging:
   level:
     org.springframework.security: DEBUG
-  # A prefix that can added to beginning of all requests.
-  #zuul.prefix=/api
+
 zuul:
+# A prefix that can added to beginning of all requests.
+#  prefix: /api
   ignoredServices: '*'
   routes:
     # Map path to auth service

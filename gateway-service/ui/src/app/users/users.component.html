@@ -1,0 +1,17 @@
+﻿
+<div>
+    <div *ngFor="let user of users; index as i">
+        <div class="card m-4"  *ngIf="currentUserId != user.id">
+            <div class="card-header" *ngIf="user.roleId == 2">
+                <button class="btn btn-danger float-right" id="userapproval-{{user.id}}-d" *ngIf="user.isEnabled" (click)="changeApproval($event, item)" >Deactivate</button>
+                <button class="btn btn-success float-right" id="userapproval-{{user.id}}-a" *ngIf=" ! user.isEnabled" (click)="changeApproval($event, item)" >Activate</button>
+            </div>
+            <div class="card-body">
+                Name: {{user.firstName}} {{user.lastName}}<br>
+                Email: {{user.email}}<br>
+                Type: <span *ngIf="user.roleId == 1">Admin</span>
+                        <span *ngIf="user.roleId == 2">Blogger</span><br>
+            </div>
+        </div>
+    </div>
+</div>

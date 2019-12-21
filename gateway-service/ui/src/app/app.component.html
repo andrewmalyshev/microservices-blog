@@ -1,0 +1,27 @@
+﻿<!-- nav -->
+<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
+    <div class="navbar-nav">
+        <a class="nav-item nav-link" routerLink="/blogs/list">Blogs</a>
+        <a class="nav-item nav-link" routerLink="/blogs/add" *ngIf="!isAdmin" >New Blog</a>
+        <a class="nav-item nav-link" routerLink="/users/list" *ngIf="isAdmin">Users</a>
+        <a class="nav-item nav-link" routerLink="/users/admin/add" *ngIf="isAdmin">New Admin</a>
+        <a class="nav-item nav-link" (click)="logout()">Logout</a>
+    </div>
+</nav>
+
+<!-- main app container -->
+<div class="jumbotron">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="text-center">
+    <p>
+        Blog App - Developed by Andrii Malyshev
+    </p>
+</div>

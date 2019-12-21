@@ -13,4 +13,7 @@ public interface UsersServiceClient {
     @GetMapping("/users/is-admin/{token}")
     boolean isAdmin(@PathVariable("token")String authToken);
 
+    @GetMapping("/users/get-name/{id}")
+    String getUserName(@PathVariable("id")Integer id);
+
 }
