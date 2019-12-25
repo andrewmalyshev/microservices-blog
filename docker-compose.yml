@@ -1,0 +1,78 @@
+version: '3.7'
+services:
+  discovery-service:
+    restart: always
+    container_name: discovery-servive-image
+    image: discovery-servive-image:latest
+    build:
+      context: ./discovery-service
+      dockerfile: Dockerfile
+    ports:
+      - "8761:8761"
+  blogs-service:
+    restart: always
+    container_name: blogs-servive-image
+    image: blogs-service-image:latest
+    build:
+      context: ./blogs-service
+      dockerfile: Dockerfile
+    ports:
+      - "8088:8088"
+    depends_on:
+      - discovery-service
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-service:8761/eureka
+  postgres-db:
+    restart: always
+    container_name: postgres-db-image
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=users_db
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+  users-service:
+    restart: always
+    container_name: users-servive-image
+    image: users-service-image:latest
+    build:
+      context: ./users-service
+      dockerfile: Dockerfile
+    ports:
+      - "8091:8091"
+    depends_on:
+      - postgres-db
+      - discovery-service
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-service:8761/eureka
+  gateway-service:
+    restart: always
+    container_name: gateway-servive-image
+    image: gateway-service-image:latest
+    build:
+      context: ./gateway-service
+      dockerfile: Dockerfile
+    ports:
+      - "8090:8090"
+    depends_on:
+      - discovery-service
+      - users-service
+      - blogs-service
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-service:8761/eureka
+#  blog-ui:
+#    container_name: blog-ui-image
+#    image: blog-ui-image:latest
+#    build:
+#      context: ./gateway-service/ui
+#      dockerfile: Dockerfile
+#    ports:
+#      - "8080:8080"
+#    depends_on:
+#      - discovery-service
+#      - users-service
+#      - blogs-service
+#      - gateway-service

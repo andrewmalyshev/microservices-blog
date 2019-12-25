@@ -3,16 +3,24 @@ spring:
     show-sql: true
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.H2Dialect
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+#        dialect: org.hibernate.dialect.H2Dialect
+#        ddl-auto: create-drop
+#    generate-ddl: true
   datasource:
-    driverClassName: org.h2.Driver
-    url: jdbc:h2:mem:user_db;DB_CLOSE_DELAY=-1
-    username: sa
-    password:
-  h2:
-    console:
-      enabled: true
-      path: /h2/
+#    driverClassName: org.h2.Driver
+#    url: jdbc:h2:mem:user_db;DB_CLOSE_DELAY=-1
+#    username: sa
+#    password:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://postgres-db:5432/users_db
+    username: user
+    password: password
+    initialization-mode: always
+#  h2:
+#    console:
+#      enabled: true
+#      path: /h2/
 
 logging:
   level:
