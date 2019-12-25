@@ -28,7 +28,7 @@ public class BlogService {
     }
 
     public Object deleteBlog(BlogDTO blogDTO, String authToken){
-        Blogs blog = blogRepository.findById(blogDTO.getId());
+        Blogs blog = blogRepository.findById(blogDTO.getId()).get();
         if(isMyBlog(blog, authToken) || usersServiceClient.isAdmin(authToken))
             blogRepository.delete(blog);
         return blogList(authToken);
@@ -40,7 +40,7 @@ public class BlogService {
     }
 
     public Blogs getById(int blogId){
-        return blogRepository.findById(blogId);
+        return blogRepository.findById(blogId).get();
     }
 
     public boolean isApprovedBlog(Blogs blog){

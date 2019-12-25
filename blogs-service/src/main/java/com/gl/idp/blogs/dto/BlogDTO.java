@@ -6,8 +6,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class BlogDTO {
-    private int id;
+    private Integer id;
     private String description;
-    private int userId;
+    private Integer userId;
     private boolean isApproved;
 }

@@ -63,16 +63,16 @@ services:
       - blogs-service
     environment:
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-service:8761/eureka
-#  blog-ui:
-#    container_name: blog-ui-image
-#    image: blog-ui-image:latest
-#    build:
-#      context: ./gateway-service/ui
-#      dockerfile: Dockerfile
-#    ports:
-#      - "8080:8080"
-#    depends_on:
-#      - discovery-service
-#      - users-service
-#      - blogs-service
-#      - gateway-service
+  blog-ui:
+    container_name: blog-ui-image
+    image: blog-ui-image:latest
+    build:
+      context: ./ui
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - discovery-service
+      - users-service
+      - blogs-service
+      - gateway-service

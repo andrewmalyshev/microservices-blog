@@ -13,7 +13,7 @@ public class Comments {
     @Id
     @GeneratedValue
     @Column(name = "id")
-    private int id;
+    private Integer id;
 
     @Basic
     @Column(name = "description")
@@ -21,11 +21,11 @@ public class Comments {
 
     @Basic
     @Column(name = "user_id", insertable = false, updatable = false)
-    private int userId;
+    private Integer userId;
 
     @Basic
     @Column(name = "blog_id", insertable = false, updatable = false)
-    private int blogId;
+    private Integer blogId;
 
     @Basic
     @Column(name = "username")

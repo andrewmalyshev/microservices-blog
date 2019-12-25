@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "scripts": {
         "build": "webpack --mode production",
-        "start": "webpack-dev-server --mode development --open"
+        "start": "webpack-dev-server --mode development --host 0.0.0.0"
     },
     "dependencies": {
         "@angular/common": "^7.1.0",

@@ -6,8 +6,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class LikesUnlikesDTO {
-    private int id;
+    private Integer id;
     private String type;
-    private int userId;
-    private int blogId;
+    private Integer userId;
+    private Integer blogId;
 }

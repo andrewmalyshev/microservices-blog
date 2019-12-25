@@ -27,7 +27,7 @@ public class BlogController {
 
     @PostMapping(value = "/change-approval")
     public Object changeApproval(@RequestHeader("Authorization") String authToken, @RequestBody BlogDTO blogDTO){
-        Blogs blog = blogRepository.findById(blogDTO.getId());
+        Blogs blog = blogRepository.findById(blogDTO.getId()).get();
         blog.setApproved(blogDTO.isApproved());
         blogRepository.save(blog);
         //TODO: Replace substring() method

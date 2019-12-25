@@ -6,8 +6,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CommentDTO {
-    int id;
-    int userId;
-    int blogId;
+    Integer id;
+    Integer userId;
+    Integer blogId;
     String description;
 }

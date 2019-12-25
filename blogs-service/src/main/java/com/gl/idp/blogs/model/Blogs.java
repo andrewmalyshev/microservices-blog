@@ -14,7 +14,7 @@ public class Blogs {
     @Id
     @GeneratedValue
     @Column(name = "id")
-    private int id;
+    private Integer id;
 
     @Basic
     @Column(name = "description")
@@ -22,7 +22,7 @@ public class Blogs {
 
     @Basic
     @Column(name = "user_id")
-    private int userId;
+    private Integer userId;
 
     @Basic
     @Column(name = "username")
