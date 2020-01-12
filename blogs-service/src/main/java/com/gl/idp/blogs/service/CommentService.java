@@ -4,17 +4,16 @@ import com.gl.idp.blogs.client.UsersServiceClient;
 import com.gl.idp.blogs.dto.CommentDTO;
 import com.gl.idp.blogs.model.Blogs;
 import com.gl.idp.blogs.model.Comments;
-import com.gl.idp.blogs.repository.CommentRepository;
+import com.gl.idp.blogs.repository.BlogRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 
 @Service
 @RequiredArgsConstructor
 public class CommentService {
 
     private final BlogService blogService;
-    private final CommentRepository commentRepository;
+    private final BlogRepository blogRepository;
     private final UsersServiceClient usersServiceClient;
 
     public Object save(CommentDTO commentDTO, String authToken){
@@ -25,9 +24,9 @@ public class CommentService {
             comments.setBlogId(commentDTO.getBlogId());
             comments.setDescription(commentDTO.getDescription());
             comments.setUserId(userId);
-            comments.setBlogByBlogId(blog);
             comments.setUsername(usersServiceClient.getUserName(userId));
-            commentRepository.save(comments);
+            blog.getComments().add(comments);
+            blogRepository.save(blog);
         }
         return blogService.blogList(authToken);
     }

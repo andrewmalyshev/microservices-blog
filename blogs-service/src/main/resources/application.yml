@@ -1,25 +1,11 @@
 server:
   port: 8088
 
-security:
-  basic:
-    enabled: false
-
 spring:
-  jpa:
-    show-sql: true
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.H2Dialect
-  datasource:
-    driverClassName: org.h2.Driver
-    url: jdbc:h2:mem:blog_db;DB_CLOSE_DELAY=-1
-    username: sa
-    password:
-  h2:
-    console:
-      enabled: true
-      path: /h2/
+  data:
+    mongodb:
+      uri: mongodb://mongodb:27017
+      database: blogs
 
 eureka:
   client:

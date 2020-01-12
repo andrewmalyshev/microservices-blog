@@ -9,5 +9,5 @@ public class LikesUnlikesDTO {
     private Integer id;
     private String type;
     private Integer userId;
-    private Integer blogId;
+    private String blogId;
 }

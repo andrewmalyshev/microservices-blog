@@ -8,6 +8,6 @@ import lombok.Setter;
 public class CommentDTO {
     Integer id;
     Integer userId;
-    Integer blogId;
+    String blogId;
     String description;
 }

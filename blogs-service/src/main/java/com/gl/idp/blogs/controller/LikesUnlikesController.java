@@ -14,6 +14,6 @@ public class LikesUnlikesController {
 
     @PostMapping(value = "/add")
     public Object add(@RequestHeader("Authorization") String authToken, @RequestBody LikesUnlikesDTO likesUnlikesDTO){
-        return likesUnlikesService.addLikesUnlikes(likesUnlikesDTO, authToken);
+        return likesUnlikesService.addLikesUnlikes(likesUnlikesDTO, authToken.substring(7));
     }
 }

@@ -1,44 +1,32 @@
 package com.gl.idp.blogs.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Data
-@Entity
-@Table(name = "blogs")
+@Document("blogs")
 public class Blogs {
 
     @Id
-    @GeneratedValue
-    @Column(name = "id")
-    private Integer id;
+    private String id;
 
-    @Basic
-    @Column(name = "description")
     private String description;
 
-    @Basic
-    @Column(name = "user_id")
     private Integer userId;
 
-    @Basic
-    @Column(name = "username")
     private String username;
 
-    @OneToMany(mappedBy = "blogByBlogId", cascade = CascadeType.ALL)
-    @JsonManagedReference
-    private Collection<Comments> commentsById;
+    private List<Comments> comments = new ArrayList<>();
 
-    @OneToMany(mappedBy = "blogByBlogId", cascade = CascadeType.ALL)
-    @JsonManagedReference
-    private Collection<LikesUnlikes> likesUnlikesById;
+    private List<LikesUnlikes> likesUnlikes= new ArrayList<>();
 
-    @Basic
-    @Column(name = "is_approved")
-    private boolean isApproved = false;
+    private boolean approved = false;
 
 }
 

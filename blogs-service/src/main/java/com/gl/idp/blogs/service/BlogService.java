@@ -39,7 +39,7 @@ public class BlogService {
         return blog.getUserId() == meId;
     }
 
-    public Blogs getById(int blogId){
+    public Blogs getById(String blogId){
         return blogRepository.findById(blogId).get();
     }
 
@@ -51,8 +51,8 @@ public class BlogService {
         if(usersServiceClient.isAdmin(authToken))
             return blogRepository.findAll();
         int currentUserId = usersServiceClient.getUserIdFromToken(authToken);
-        return Stream.concat(blogRepository.findByIsApproved(true).stream(),
-                blogRepository.findByUserIdAndIsApproved(currentUserId, false).stream())
+        return Stream.concat(blogRepository.findByApproved(true).stream(),
+                blogRepository.findByUserIdAndApproved(currentUserId, false).stream())
                 .collect(Collectors.toList());
     }
 }

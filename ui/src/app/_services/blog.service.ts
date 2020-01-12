@@ -21,9 +21,9 @@ export class BlogService {
         var comment = {
             id: null,
             userId: userId,
-            blogId: Number.parseInt(blogId),
+            blogId: blogId,
             description: description
-        }
+        };
         console.log(comment);
         return this.http.post<any>(`${config.apiUrl}/comment/add`, comment);
     }
@@ -31,7 +31,7 @@ export class BlogService {
         var approval = {
             id: blogId,
             approved: approved
-        }
+        };
         console.log(approval);
         return this.http.post<any>(`${config.apiUrl}/blog/change-approval`, approval);
     }
@@ -52,8 +52,8 @@ export class BlogService {
         for(var i in blogs){
             var likeCount = 0;
             var unlikeCount = 0;
-            for(var x in blogs[i].likesUnlikesById){
-                if(blogs[i].likesUnlikesById[x].type == "l"){
+            for(var x in blogs[i].likesUnlikes){
+                if(blogs[i].likesUnlikes[x].type == "l"){
                     likeCount++;
                 }
                 else{

@@ -11,9 +11,9 @@
         <div class="card-footer p-1" *ngIf=" ! isAdmin">
                <button class="btn btn-primary" id="l_{{blog.id}}" (click)="giveLikeorUnlike($event, item)" >Like {{blog.likeCount}}</button>
                <button class="btn btn-secondary m-2" id="ul_{{blog.id}}" (click)="giveLikeorUnlike($event, item)" >Unlike {{blog.unlikeCount}}</button>
-               <button class="btn btn-info">Comments {{blog.commentsById.length}}</button>
+               <button class="btn btn-info">Comments {{blog.comments.length}}</button>
         </div>
-        <div class="card" *ngFor="let comment of blog.commentsById; index as j">
+        <div class="card" *ngFor="let comment of blog.comments; index as j">
             <h6 class="p-1">{{comment.username}}</h6>
             <div style="padding:0 0 10px 20px ">{{comment.description}}</div>
         </div>

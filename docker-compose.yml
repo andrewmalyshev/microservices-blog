@@ -9,6 +9,17 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8761:8761"
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null
+    volumes:
+      - ./data/db:/data/db
+    ports:
+      - "27017:27017"
+    command: mongod --logpath=/dev/null
   blogs-service:
     restart: always
     container_name: blogs-servive-image
@@ -20,6 +31,9 @@ services:
       - "8088:8088"
     depends_on:
       - discovery-service
+      - mongodb
+#    links:
+#      - mongodb
     environment:
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-service:8761/eureka
   postgres-db:
