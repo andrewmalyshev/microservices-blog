@@ -13,10 +13,13 @@ With a pretty simple Angular user interface, by the way.
 - Spring Security
 - Spring Data
 - JJWT
+- Lombok
 - PostgreSQL
 - MongoDB
 - Angular 7
 - Webpack
+- Docker
+- Docker Compose
 
 ## Functional services
 
