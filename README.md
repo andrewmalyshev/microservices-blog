@@ -69,7 +69,7 @@ In theory, a client could make requests to each of the microservices directly. B
 
 Usually a much better approach is to use API Gateway. It is a single entry point into the system, used to handle requests by routing them to the appropriate backend service or by invoking multiple backend services and [aggregating the results](http://techblog.netflix.com/2013/01/optimizing-netflix-api.html). Also, it can be used for authentication, insights, stress and canary testing, service migration, static response handling, active traffic management.
 
-Netflix opensourced [such an edge service](http://techblog.netflix.com/2013/06/announcing-zuul-edge-service-in-cloud.html), and now with Spring Cloud we can enable it with one `@EnableZuulProxy` annotation. In this project, I use Zuul to store static content (ui application) and to route requests to appropriate microservices. Here's a simple prefix-based routing configuration for Notification service:
+With Spring Cloud we can enable edge service with one `@EnableZuulProxy` annotation. In this project Zuul uses to route requests to appropriate microservices. Here's a simple prefix-based routing configuration for Blogs service:
 
 ```yml
 zuul:
@@ -81,7 +81,7 @@ zuul:
 
 ```
 
-That means all requests starting with `/blog` will be routed to Blogs service. There is no hardcoded address, as you can see. Zuul uses [Service discovery](https://github.com/andrewmalyshev/microservices-blog/blob/master/README.md#service-discovery) mechanism to locate Blogs service instances.
+That means all requests starting with `/blog` will be routed to Blogs service. There is no hardcoded address. Zuul uses [Service discovery](https://github.com/andrewmalyshev/microservices-blog/blob/master/README.md#service-discovery) mechanism to locate Blogs service instances.
 
 ### Service discovery
 
