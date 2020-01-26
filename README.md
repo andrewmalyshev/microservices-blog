@@ -1,4 +1,4 @@
-# Microservices Blog
+# Microservices Blog Application
 
 **A simple way to share you personal thoughts**
 
