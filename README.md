@@ -2,7 +2,7 @@
 
 **A simple way to share you personal thoughts**
 
-This is a proof of concept application, which demonstrates [Microservice Architecture Pattern](http://martinfowler.com/microservices/) using Spring Boot, Spring Cloud, PostgreSQL, MongoDB and Docker with Docker Compose.
+This is the [Monolith Blog Apllication](https://github.com/andrewmalyshev/monolith-blog) but with the reviewed architecture. The main features and the user interface are the same with previous version. But the architectural approach was completely changed. This is a proof of concept application, which demonstrates [Microservice Architecture Pattern](http://martinfowler.com/microservices/) using Spring Boot, Spring Cloud, PostgreSQL, MongoDB and Docker with Docker Compose.
 With a pretty simple Angular user interface, by the way.
 
 ## Technologies used
