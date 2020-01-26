@@ -23,7 +23,7 @@ With a pretty simple Angular user interface, by the way.
 
 ## Functional services
 
-Blog Apllication was decomposed into two core microservices. All of them are independently deployable applications, organized around certain business domains.
+[Monolith Blog Apllication](https://github.com/andrewmalyshev/monolith-blog) was decomposed into two core microservices. All of them are independently deployable applications, organized around certain business domains.
 
 <img width="667" alt="Functional services" src="https://user-images.githubusercontent.com/8774751/73024357-1b930f00-3e36-11ea-9d50-7021be7fa1f4.png">
 
